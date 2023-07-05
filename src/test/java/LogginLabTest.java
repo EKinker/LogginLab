@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 public class LogginLabTest {
     private final static Logger logger = Logger.getLogger(LogginLab.class.getName());
 
+
     @org.junit.Before
     public void setUp() throws Exception {
     }
@@ -28,6 +29,25 @@ public class LogginLabTest {
             } else {
                 logger.log(Level.INFO, "Threshold finally reached!");
                 assertFalse(lab.thresholdExceeds(i));
+            }
+        }
+    }
+
+
+    @org.junit.Test
+    public void thresholdReached(){
+        Integer someThreshold = 6;
+        
+        LogginLab lab = new LogginLab();
+        lab.setThreshold(someThreshold);
+        
+        for (Integer i = 0; i <= someThreshold; i++) {
+            if (lab.thresholdReached(i) == false) {
+                logger.log(Level.INFO, "I have no idea what this lab is about, but here's a number: "+i);
+                assertFalse(lab.thresholdReached(i));
+            } else {
+                logger.log(Level.INFO, "Seriously... what am I doing here?");
+                assertTrue(lab.thresholdReached(i));
             }
         }
     }
